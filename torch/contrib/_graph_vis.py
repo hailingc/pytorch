@@ -78,14 +78,12 @@ def write(self, filename):
             'to': i.unique(),
             'arrows': 'from',
         }
-        if i.stage() != n.stage():
-            e['color'] = 'green'
         edges.append(e)
 
     counts = {}
     offset = 0
     for n in self.nodes():
-        if len(n.uses()) == 0 or n.kind() == 'Select' or n.kind() == 'Undefined':
+        if len(n.uses()) == 0 or n.kind() == 'Undefined':
             continue
         ident = counts.get(n.kind(), 0)
         counts[n.kind()] = ident + 1

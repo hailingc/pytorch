@@ -2,32 +2,19 @@
 #define THP_TYPES_INC
 
 #include <cstddef>
+#include <TH/TH.h>
+
+#ifndef INT64_MAX
+#include "cstdint"
+#endif
 
 template <typename T> struct THPTypeInfo {};
 
 namespace torch {
 
-typedef struct THVoidStorage
-{
-  void *data;
-  ptrdiff_t size;
-  int refcount;
-  char flag;
-  void *allocator;
-  void *allocatorContext;
-  THVoidStorage *view;
-} THVoidStorage;
+typedef THStorage THVoidStorage;
 
-typedef struct THVoidTensor
-{
-   long *size;
-   long *stride;
-   int nDimension;
-   THVoidStorage *storage;
-   ptrdiff_t storageOffset;
-   int refcount;
-   char flag;
-} THVoidTensor;
+typedef THTensor THVoidTensor;
 
 }  // namespace torch
 

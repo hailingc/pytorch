@@ -4,6 +4,9 @@
 
 namespace torch { namespace jit {
 
-void FuseGraph(std::shared_ptr<Graph>& graph);
+// NB: Be sure to run DCE before fusion, because dead instructions
+// can prevent fusion opportunities from being exploited.
+// On Windows will noop, NYI
+TORCH_API void FuseGraph(std::shared_ptr<Graph>& graph);
 
 }}
